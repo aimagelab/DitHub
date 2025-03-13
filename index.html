@@ -11,223 +11,544 @@
     <link rel="icon" type="image/png" sizes="32x32" href="icon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="icon/favicon-16x16.png">
     <link rel="manifest" href="icon/site.webmanifest">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
+        :root {
+            --primary-color: #505050;
+            --secondary-color: #2C3E50;
+            --accent-color: #707070;
+            --light-gray: #f8f9fa;
+            --dark-gray: #495057;
+            --text-color: #333;
+            --text-secondary: #6c757d;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            background-color: #fff;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+        }
+        
         .btn-paper {
             margin: 0 10px;
+            border-radius: 30px;
+            padding: 10px 20px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.85rem;
         }
-
+        
+        .btn-paper:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
         .disabled {
             pointer-events: none;
             opacity: 0.6;
         }
-
+        
         .hero-section {
-            padding: 4rem 0;
-            background-color: #f8f9fa;
+            padding: 6rem 0;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); /* Light gray background */
+            color: #272727; /* Dark text color */
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgcGF0dGVyblRyYW5zZm9ybT0icm90YXRlKDQ1KSI+PHJlY3QgaWQ9InBhdHRlcm4tYmciIHdpZHRoPSI0MDAlIiBoZWlnaHQ9IjQwMCUiIGZpbGw9InRyYW5zcGFyZW50Ij48L3JlY3Q+PHBhdGggZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjA1KSIgZD0iTTAgMGg1djVIMHoiPjwvcGF0aD48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IGZpbGw9InVybCgjcGF0dGVybikiIGhlaWdodD0iMTAwJSIgd2lkdGg9IjEwMCUiPjwvcmVjdD48L3N2Zz4=');
+            opacity: 0.8;
+        }
+        
+        .hero-section h1,
+        .hero-section h2,
+        .hero-section p,
+        .hero-section .authors {
+            color: #272727;
+        }
+
+        .hero-section h2 {
+            opacity: 1; /* Opacità piena */
         }
 
         .authors {
-            color: #666;
+            color: #272727;
             font-size: 1.1rem;
+            font-weight: 300;
         }
 
+        .btn-paper {
+            margin: 0 10px;
+            border-radius: 30px;
+            padding: 10px 20px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.85rem;
+        }
+
+        /* Bottone arXiv (chiaro) */
+        .btn-light {
+            color: #333333; /* Testo scuro */
+            background-color: #FFFFFF; /* Sfondo bianco */
+            border-color: #FFFFFF;
+        }
+
+        .btn-light:hover {
+            background-color: #e6e6e6;
+            border-color: #e6e6e6;
+            color: #333333;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Bottone GitHub (contorno) */
+        .btn-outline-light {
+            color: #FFFFFF; /* Testo bianco */
+            border-color: #FFFFFF; /* Bordo bianco */
+            background-color: transparent;
+        }
+
+        .btn-outline-light:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: #FFFFFF;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
         .table-results {
-            font-size: 0.9rem;
+            font-size: 0.80rem; /* Leggermente più piccolo per far stare tutto */
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            width: 100%; /* Usa tutta la larghezza disponibile */
         }
-
+        
         .table-results th {
-            background-color: #f8f9fa;
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: 500;
+            padding: 12px 8px; /* Ridotto leggermente per risparmiare spazio */
+            white-space: nowrap; /* Evita che i titoli vadano a capo */
         }
-
+        
+        .table-results td {
+            padding: 10px 8px; /* Ridotto leggermente per compattezza */
+            white-space: nowrap; /* Evita che i dati vadano a capo */
+        }
+        
         .best-result {
             font-weight: bold;
             color: #198754;
         }
-
-        .github-font {
-            font-family: 'Inter', sans-serif;
+        
+        .section-title {
+            position: relative;
+            margin-bottom: 2rem;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -10px;
+            width: 50px;
+            height: 4px;
+            background-color: var(--primary-color);
+            border-radius: 2px;
+        }
+        
+        .feature-card {
+            border-radius: 15px;
+            border: none;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-card .card-title {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        .feature-card .card-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .content-section {
+            padding: 5rem 0;
+        }
+        
+        .light-section {
+            background-color: var(--light-gray);
+        }
+        
+        .lead {
+            font-size: 1.15rem;
+            font-weight: 400;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+        
+        .highlight-text {
+            color: var(--primary-color);
+            font-weight: 500;
+        }
+        
+        .model-diagram {
+            border-radius: 15px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .model-diagram:hover {
+            transform: scale(1.02);
+        }
+        
+        .blob-background {
+            background: linear-gradient(135deg, rgba(200, 200, 200, 0.1) 0%, rgba(220, 220, 220, 0.1) 100%);
+        }
+        
+        @keyframes blob {
+            0% { border-radius: 43% 57% 70% 30% / 46% 40% 60% 54%; }
+            25% { border-radius: 54% 46% 38% 62% / 49% 70% 30% 51%; }
+            50% { border-radius: 30% 70% 50% 50% / 30% 30% 70% 70%; }
+            75% { border-radius: 65% 35% 65% 35% / 40% 60% 40% 60%; }
+            100% { border-radius: 43% 57% 70% 30% / 46% 40% 60% 54%; }
         }
     </style>
 </head>
 
 <body>
     <!-- Hero Section -->
-    <div class="hero-section">
-        <div class="container">
+    <div class="hero-section position-relative">
+        <div class="container position-relative z-index-1">
             <div class="row justify-content-center text-center">
                 <div class="col-md-10">
-                    <h1 class="display-4 mb-3 d-flex align-items-center justify-content-center github-font">
-                        <img src="logo.png" class="me-2" style="height: 80px;">
+                    <h1 class="display-3 mb-3 d-flex align-items-center justify-content-center fw-bold" style="font-family: 'Montserrat', sans-serif;">
+                        <img src="logo.png" class="me-3" style="height: 80px;">
                         <span>DitHub</span>
-                    </h1>                 
+                    </h1>
                     
-                    
-                    <h2 class="h4 mb-4 text-muted">A Modular Framework for Incremental Open-Vocabulary Object Detection</h2>
+                    <h2 class="h4 mb-4 text-black opacity-75 fw-light">A Modular Framework for Incremental Open-Vocabulary Object Detection</h2>
                     <p class="authors mb-4">
                         Chiara Cappellino, Gianluca Mancusi, Matteo Mosconi, Angelo Porrello, Simone Calderara, Rita Cucchiara
                     </p>
-                    <div class="buttons mb-4">
-                        <a href="https://arxiv.org/abs/"><button class="btn btn-danger btn-paper"><i class="fas fa-archive me-2"></i>arXiv Paper</button></a>
-                        <button class="btn btn-dark btn-paper disabled">
+                    <div class="buttons d-flex justify-content-center mt-3">
+                        <a href="http://arxiv.org/abs/2503.09271" class="btn btn-dark btn-paper shadow"><i class="fas fa-archive me-2"></i>arXiv Paper</a>
+                        <button class="btn btn-dark btn-paper disabled ms-2">
                             <i class="fab fa-github me-2"></i>Code (coming soon)
                         </button>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="blob-background" style="top: -400px; right: -400px; opacity: 0.5;"></div>
+        <div class="blob-background" style="bottom: -400px; left: -400px; opacity: 0.5;"></div>
     </div>
+    
 
     <!-- Main Content -->
-    <div class="container my-5">
-        <!-- Abstract -->
-        <div class="row justify-content-center mb-5">
-            <div class="col-md-10">
-                <h3 class="mb-3">Abstract</h3>
-                <p class="lead">
-                    Open-Vocabulary object detectors inherently generalize to an unrestricted set of categories, enabling recognition through simple textual prompting. However, adapting these models to rare classes or reinforcing their abilities on specialized domains remains essential. While recent methods rely on monolithic adaptation strategies with a single set of weights, we embrace modular deep learning. We introduce DitHub, a framework designed to build and maintain a library of efficient adaptation modules. Inspired by Version Control Systems, DitHub manages expert modules as branches that can be fetched and merged as needed. This modular approach allows us to conduct an in-depth exploration of the compositional properties of adaptation modules, marking the first such study in Object Detection. Our method achieves state-of-the-art performance on the ODinW13 benchmark and ODinWO, a newly introduced benchmark designed to assess class reappearance.
-                </p>
-            </div>
-        </div>
-
-        <!-- Model Overview -->
-        <div class="row justify-content-center mb-5">
-            <div class="col-md-10">
-                <h3 class="mb-3">Model Overview</h3>
-                <div class="text-center mb-4">
-                    <img src="tasks_13@4x.png" alt="DitHub Model Architecture" class="img-fluid rounded" style="max-width: 95%; height: auto;">
-                    <p class="text-muted mt-2">Figure 1: Overview of the DitHub architecture inspired by Version Control Systems</p>
+    <div class="content-section">
+        <div class="container">
+            <!-- Abstract -->
+            <div class="row justify-content-center mb-5">
+                <div class="col-md-10">
+                    <h3 class="section-title">Abstract</h3>
+                    <p class="lead">
+                        Open-Vocabulary object detectors inherently generalize to an unrestricted set of categories, enabling recognition through simple textual prompting. However, adapting these models to rare classes or reinforcing their abilities on specialized domains remains essential. While recent methods rely on monolithic adaptation strategies with a single set of weights, we embrace <span class="highlight-text">modular deep learning</span>. We introduce <span class="highlight-text">DitHub</span>, a framework designed to build and maintain a library of efficient adaptation modules. Inspired by Version Control Systems, DitHub manages expert modules as branches that can be fetched and merged as needed. This modular approach allows us to conduct an in-depth exploration of the compositional properties of adaptation modules, marking the first such study in Object Detection. Our method achieves state-of-the-art performance on the ODinW13 benchmark and ODinWO, a newly introduced benchmark designed to assess class reappearance.
+                    </p>
                 </div>
             </div>
-        </div>
 
-        <!-- Key Features -->
-        <div class="row justify-content-center mb-5">
-            <div class="col-md-10">
-                <h3 class="mb-4 text-center">Core Features & Innovations</h3>
-
-                <!-- First row -->
-                <div class="row mb-4 g-4">
-                    <!-- Problem Statement -->
-                    <div class="col-md-6">
-                        <div class="h-100 p-4 shadow-sm rounded bg-light border">
-                            <h4 class="h5 text-danger mb-3"><i class="fas fa-exclamation-circle me-2"></i> Problem Statement</h4>
-                            <p>
-                                Existing approaches use <strong>monolithic adaptations</strong>, which condense all new information into a single set of weights.
-                                This creates difficulties when classes reappear in different contexts, preventing selective updates without knowledge loss.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Modular Adaptation -->
-                    <div class="col-md-6">
-                        <div class="h-100 p-4 shadow-sm rounded bg-light border">
-                            <h4 class="h5 text-success mb-3"><i class="fas fa-code-branch me-2"></i> Modular Adaptation</h4>
-                            <p>
-                                <strong>DitHub</strong> introduces a modular approach: expert modules are treated as separate branches that can be retrieved and fused dynamically,
-                                ensuring a more efficient and flexible incremental learning process.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Second row -->
-                <div class="row mb-4 g-4">
-                    <!-- Specialized Modules -->
-                    <div class="col-md-6">
-                        <div class="h-100 p-4 shadow-sm rounded bg-light border">
-                            <h4 class="h5 text-primary mb-3"><i class="fas fa-puzzle-piece me-2"></i> Specialized Modules</h4>
-                            <p>
-                                Our experiments demonstrate that class-specialized modules significantly improve performance, with an average gain of <strong>+1.23 mAP</strong>.
-                                The modular approach allows targeted updates without altering existing knowledge.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Training-free Unlearning -->
-                    <div class="col-md-6">
-                        <div class="h-100 p-4 shadow-sm rounded bg-light border">
-                            <h4 class="h5 text-warning mb-3"><i class="fas fa-eraser me-2"></i> Training-free Unlearning</h4>
-                            <p>
-                                DitHub enables <strong>selective knowledge removal</strong> without requiring retraining.
-                                By subtracting a specific module, we can efficiently erase the detection capability of a class.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Centered Image -->
-                <div class="row justify-content-center">
-                    <div class="col-md-8 text-center">
-                        <img src="intro_figure_4@4x.png" class="img-fluid rounded shadow" style="max-width: 60%; height: auto;">
-                        <p class="text-muted mt-2">Figure 3: DitHub's modularity enables more precise incremental adaptations.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-
-
-        <!-- Results -->
-        <div class="row justify-content-center mb-5">
-            <div class="col-md-10">
-                <h3 class="mb-3">Experimental Results</h3>
-                
-                <h4 class="mt-4">Performance on ODinW13</h4>
-                <p>We evaluate DitHub on the ODinW13 benchmark, which consists of 13 sub-datasets spanning from traditional Pascal VOC to more challenging domains with significant distribution shifts. Our method outperforms the main competitor, ZiRa, by a substantial 4.21 mAP points and achieves the best results. Notably, on the zero-shot MS COCO evaluation (ZCOCO), our approach outperforms ZiRa by 0.75 mAP, setting a new state-of-the-art in both incremental and zero-shot retention capabilities.</p>
-                <table class="table table-striped text-center">
-                    <caption><strong>Table 1:</strong> Comparison of mAP values across 13 tasks. <strong>Avg</strong> represents the average across the 13 tasks, while zero-shot performance is reported in the <strong>ZCOCO</strong> column. Best results are highlighted in bold.</caption>
-                    <thead class="table-dark">
-                        <tr>
-                            <th>Shots</th> <th>Method</th> <th>ZCOCO</th> <th>Avg</th> <th>Ae</th> <th>Aq</th> <th>Co</th> <th>Eg</th> 
-                            <th>Mu</th> <th>Pa</th> <th>Pv</th> <th>Pi</th> <th>Po</th> <th>Ra</th> <th>Sh</th> <th>Th</th> <th>Ve</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>0</td> <td>G-Dino</td> <td>47.41</td> <td>46.80</td> <td>19.11</td> <td>20.82</td> <td>64.75</td> <td>59.98</td>
-                             <td>25.34</td> <td>56.27</td> <td>54.80</td> <td>65.94</td> <td>22.13</td> <td>62.02</td> <td>32.85</td> <td>70.38</td> <td>57.07</td>
-                        </tr>
-                        <tr>
-                            <td rowspan="2">Full</td> <td>ZiRA</td> <td>46.26</td> <td>57.98</td> <td>31.76</td> <td>47.35</td> <td><strong>71.77</strong></td>
-                            <td>64.74</td> <td>46.53</td> <td>62.66</td> <td>66.39</td> <td><strong>71.00</strong></td> <td>48.48</td> <td>63.03</td> <td>41.44</td> <td>76.13</td> <td>62.44</td>
-                        </tr>
-                        <tr>
-                            <td><strong>DitHub</strong></td> <td><strong>47.01</strong></td> <td><strong>62.19</strong></td> <td><strong>34.62</strong></td> <td><strong>50.65</strong></td> 
-                            <td>70.46</td> <td><strong>68.56</strong></td> <td><strong>49.28</strong></td> <td><strong>65.57</strong></td> <td><strong>69.58</strong></td> <td>71.10</td> 
-                            <td><strong>56.65</strong></td> <td><strong>70.88</strong></td> <td><strong>52.82</strong></td> <td><strong>79.30</strong></td> <td><strong>68.18</strong></td>
-                        </tr>
-                    </tbody>
-                </table>
-                
-                
-                <h4 class="mt-4">Performance on ODinWO</h4>
-                <p>We introduce ODinWO (Overlapped), a variant of ODinW13 specifically designed to evaluate performance on classes that reoccur across different domains. In this benchmark, DitHub secures a substantial improvement of 4.75 mAP and a 2.08 mAP gain on ZCOCO over ZiRa. We attribute this success to our class-oriented modular design, which enables selective updates to recurring concepts without overwriting knowledge associated with other classes.</p>
-                <div style="width: 60%; margin: auto;">
-                    <table class="table table-striped text-center">
-                        <caption><strong>Table 2:</strong> mAP values on ODinWO. Best results are highlighted in bold.</caption>
-                        <thead class="table-dark">
-                            <tr>
-                                <th>Method</th> <th>ZCOCO</th> <th>Avg</th> <th>Ae</th> <th>Hw</th> <th>Pv</th> <th>Sd</th> <th>Th</th> <th>Ve</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>G-Dino</td> <td>47.41</td> <td>53.15</td> <td>45.12</td> <td>67.54</td> <td>58.11</td> <td>25.84</td> <td>70.40</td> <td>51.87</td>
-                            </tr>
-                            <tr>
-                                <td>ZiRa</td> <td>44.43</td> <td>57.63</td> <td>39.92</td> <td>68.00</td> <td>64.90</td> <td><strong>46.26</strong></td> <td>77.26</td> <td>49.47</td>
-                            </tr>
-                            <tr>
-                                <td><strong>DitHub</strong></td> <td><strong>46.51</strong></td> <td><strong>62.38</strong></td> <td><strong>53.35</strong></td> <td><strong>71.07</strong></td> <td><strong>71.01</strong></td> <td>41.75</td> <td><strong>80.21</strong></td> <td><strong>56.90</strong></td>
-                            </tr>
-                        </tbody>
-                    </table>
+            <!-- Centered Image -->
+            <div class="row justify-content-center mt-4 mb-5">
+                <div class="col-md-8 text-center">
+                    <img src="intro_figure_4@4x.png" class="img-fluid model-diagram" style="max-width: 80%; height: auto;">
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Key Features - Light BG -->
+    <div class="content-section light-section">
+        <div class="container">
+            <div class="row justify-content-center mb-5">
+                <div class="col-md-10">
+                    <h3 class="section-title text-center">Core Features & Innovations</h3>
+
+                    <!-- First row -->
+                    <div class="row mb-4 g-4 mt-4">
+                        <!-- Problem Statement -->
+                        <div class="col-md-6">
+                            <div class="card feature-card">
+                                <div class="card-body p-4">
+                                    <div class="text-center mb-3">
+                                        <i class="fas fa-exclamation-circle card-icon" style="color: #dc3545;"></i>
+                                    </div>
+                                    <h4 class="card-title text-center" style="color: #dc3545;">Problem Statement</h4>
+                                    <p class="card-text">
+                                        While recent approaches allow vision-language detectors to incrementally learn new categories without losing zero-shot capabilities, they often rely on <strong>monolithic adaptation</strong>, merging all acquired knowledge into one model. This results in difficulty updating individual concepts across modalities and can lead to knowledge interference and performance loss.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Modular Adaptation -->
+                        <div class="col-md-6">
+                            <div class="card feature-card">
+                                <div class="card-body p-4">
+                                    <div class="text-center mb-3">
+                                        <i class="fas fa-code-branch card-icon" style="color: #198754;"></i>
+                                    </div>
+                                    <h4 class="card-title text-center" style="color: #198754;">Modular Adaptation</h4>
+                                    <p class="card-text">
+                                        <strong>DitHub</strong> introduces a modular approach by maintaining a library of specialized detection modules. Instead of integrating new knowledge into a single model, this approach enables efficient retrieval, fusion, and adaptation, ensuring flexible and scalable incremental learning.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Second row -->
+                    <div class="row mb-4 g-4">
+                        <!-- Specialized Modules -->
+                        <div class="col-md-6">
+                            <div class="card feature-card">
+                                <div class="card-body p-4">
+                                    <div class="text-center mb-3">
+                                        <i class="fas fa-puzzle-piece card-icon" style="color: #505050;"></i>
+                                    </div>
+                                    <h4 class="card-title text-center">Specialized Modules</h4>
+                                    <p class="card-text">
+                                        Our experiments show that specialized modules improve performance significantly, with a state-of-the-art gain of <strong>+4.21 mAP</strong> in the Incremental Vision-Language Object Detection paradigm.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <!-- Training-free Unlearning -->
+                        <div class="col-md-6">
+                            <div class="card feature-card">
+                                <div class="card-body p-4">
+                                    <div class="text-center mb-3">
+                                        <i class="fas fa-eraser card-icon" style="color: #ffc107;"></i>
+                                    </div>
+                                    <h4 class="card-title text-center" style="color: #ffc107;">Training-free Unlearning</h4>
+                                    <p class="card-text">
+                                        DitHub allows <strong>selective knowledge removal</strong> without retraining, enabling the efficient elimination of specific classes by removing associated modules.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Model Overview -->
+    <div class="content-section">
+        <div class="container">
+            <div class="row justify-content-center mb-5">
+                <div class="col-md-10">
+                    <h3 class="section-title text-center">Model Overview</h3>
+
+                    <!-- Image with effects -->
+                    <div class="text-center mb-5 mt-4">
+                        <img src="tasks_13@4x.png" alt="DitHub Model Architecture" class="img-fluid model-diagram" style="max-width: 95%; height: auto;">
+                    </div>
+
+                    <!-- Further details -->
+                    <p class="lead text-center mb-5">
+                        DitHub creates modular class-specific detectors, handling both rare and common objects while offering a memory-efficient structure for scalable long-term use. By using low-rank adaptation (LoRA), we fine-tune specialized modules for each task, ensuring minimal interference. This modular design supports on-the-fly adaptation to new classes, making DitHub a versatile solution for evolving detection needs.
+                    </p>
+
+                    <!-- Features Section -->
+                    <div class="row justify-content-center g-4">
+                        <div class="col-md-4">
+                            <div class="card feature-card">
+                                <div class="card-body p-4 text-center">
+                                    <div class="mb-3">
+                                        <i class="fas fa-layer-group card-icon"></i>
+                                    </div>
+                                    <h5 class="card-title">Modular Adaptation</h5>
+                                    <p class="card-text">
+                                        Expand the library of specialized modules dynamically as new tasks arise, adapting to both common and rare object classes.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="card feature-card">
+                                <div class="card-body p-4 text-center">
+                                    <div class="mb-3">
+                                        <i class="fas fa-memory card-icon"></i>
+                                    </div>
+                                    <h5 class="card-title">Memory Efficiency</h5>
+                                    <p class="card-text">
+                                        Utilize shared class-specific matrices to ensure a low memory footprint without compromising performance across tasks.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="card feature-card">
+                                <div class="card-body p-4 text-center">
+                                    <div class="mb-3">
+                                        <i class="fas fa-cogs card-icon"></i>
+                                    </div>
+                                    <h5 class="card-title">Flexible Inference</h5>
+                                    <p class="card-text">
+                                        Adapt seamlessly to new scenarios by dynamically selecting and merging specialized modules based on specific input or context.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Experimental Results -->
+    <div class="content-section light-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-10">
+                    <h3 class="section-title">Experimental Results</h3>
+
+                    <h4 class="mt-5 mb-3 fw-bold">Performance on ODinW13</h4>
+                    <p class="lead mb-4">
+                        We evaluate DitHub on the ODinW-13 benchmark, which consists of 13 sub-datasets spanning from traditional Pascal VOC to
+                        more challenging domains with significant distribution shifts. Our method outperforms the main competitor, ZiRa, by 
+                        a substantial <span class="highlight-text">4.21 mAP points</span>. Notably, on the zero-shot MS COCO evaluation (ZCOCO), our approach outperforms ZiRa by 
+                        0.75 mAP, setting a new state-of-the-art in both incremental and zero-shot retention capabilities.
+                    </p>
+                    <div class="table-responsive mb-5">
+                        <table class="table table-striped text-center table-results">
+                            <thead>
+                                <tr>
+                                    <th>Shots</th> <th>Method</th> <th>ZCOCO</th> <th>Avg</th> <th>Ae</th> <th>Aq</th> <th>Co</th> <th>Eg</th> 
+                                    <th>Mu</th> <th>Pa</th> <th>Pv</th> <th>Pi</th> <th>Po</th> <th>Ra</th> <th>Sh</th> <th>Th</th> <th>Ve</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>0</td> <td>G-Dino</td> <td>47.41</td> <td>46.80</td> <td>19.11</td> <td>20.82</td> <td>64.75</td> <td>59.98</td>
+                                    <td>25.34</td> <td>56.27</td> <td>54.80</td> <td>65.94</td> <td>22.13</td> <td>62.02</td> <td>32.85</td> <td>70.38</td> <td>57.07</td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="2">Full</td> <td>ZiRA</td> <td>46.26</td> <td>57.98</td> <td>31.76</td> <td>47.35</td> <td class="best-result">71.77</td>
+                                    <td>64.74</td> <td>46.53</td> <td>62.66</td> <td>66.39</td> <td class="best-result">71.00</td> <td>48.48</td> <td>63.03</td> <td>41.44</td> <td>76.13</td> <td>62.44</td>
+                                </tr>
+                                <tr>
+                                    <td class="best-result">DitHub</td> <td class="best-result">47.01</td> <td class="best-result">62.19</td> <td class="best-result">34.62</td> <td class="best-result">50.65</td> 
+                                    <td>70.46</td> <td class="best-result">68.56</td> <td class="best-result">49.28</td> <td class="best-result">65.57</td> <td class="best-result">69.58</td> <td>71.10</td> 
+                                    <td class="best-result">56.65</td> <td class="best-result">70.88</td> <td class="best-result">52.82</td> <td class="best-result">79.30</td> <td class="best-result">68.18</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h4 class="mt-5 mb-3 fw-bold">Performance on ODinWO</h4>
+                    <p class="lead mb-4">
+                        We introduce ODinW-O (Overlapped), a variant of ODinW-35 specifically designed to evaluate performance on classes that
+                        reoccur across different domains. In this benchmark, DitHub secures a substantial improvement of <span class="highlight-text">4.75 mAP</span> and a <span class="highlight-text">2.08 mAP</span>
+                        gain on ZCOCO over ZiRa. We attribute this success to our class-oriented modular design, which enables selective updates
+                        to recurring concepts without overwriting knowledge associated with other classes.
+                    </p>
+                    <div class="text-center mb-5">
+                        <div style="width: 75%; margin: auto;">
+                            <table class="table table-striped text-center table-results">
+                                <thead>
+                                    <tr>
+                                        <th>Method</th> <th>ZCOCO</th> <th>Avg</th> <th>Ae</th> <th>Hw</th> <th>Pv</th> <th>Sd</th> <th>Th</th> <th>Ve</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>G-Dino</td> <td>47.41</td> <td>53.15</td> <td>45.12</td> <td>67.54</td> <td>58.11</td> <td>25.84</td> <td>70.40</td> <td>51.87</td>
+                                    </tr>
+                                    <tr>
+                                        <td>ZiRa</td> <td>44.43</td> <td>57.63</td> <td>39.92</td> <td>68.00</td> <td>64.90</td> <td class="best-result">46.26</td> <td>77.26</td> <td>49.47</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="best-result">DitHub</td> <td class="best-result">46.51</td> <td class="best-result">62.38</td> <td class="best-result">53.35</td> <td class="best-result">71.07</td> <td class="best-result">71.01</td> <td>41.75</td> <td class="best-result">80.21</td> <td class="best-result">56.90</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Citation Section -->
+    <div class="content-section" style="padding-top: 0;">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-10">
+                    <h3 class="section-title">Citation</h3>
+                    <p class="lead mb-3">
+                        If you find DitHub useful for your research, please consider citing our paper:
+                    </p>
+                    
+                    <div class="card p-4 mb-4" style="border-radius: 15px; background-color: #f8f9fa; border: none; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);">
+                        <div style="overflow-x: auto;">
+                            <pre style="background-color: transparent; border: none; padding: 10px; margin: 0; font-size: 0.8rem; line-height: 1.5; font-family: 'Courier New', Courier, monospace; color: #333;">
+    @misc{cappellino2025dithub,
+        title={DitHub: A Modular Framework for Incremental Open-Vocabulary Object Detection}, 
+        author={Chiara Cappellino and Gianluca Mancusi and Matteo Mosconi and Angelo Porrello and Simone Calderara and Rita Cucchiara},
+        year={2025},
+        eprint={2503.09271},
+        archivePrefix={arXiv},
+        primaryClass={cs.CV},
+        url={https://arxiv.org/abs/2503.09271}, 
+    }
+                            </pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Footer -->
+    <footer class="py-4 bg-dark text-white text-center">
+        <div class="container">
+            <p class="mb-0">DitHub: Incremental Open-Vocabulary Object Detection</p>
+        </div>
+    </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
 </body>
